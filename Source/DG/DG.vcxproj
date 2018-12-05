@@ -133,7 +133,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CommonFunc.hpp" />
     <ClInclude Include="DGApi.hpp" />
+    <ClInclude Include="Matrix.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Task1.1.hpp" />
