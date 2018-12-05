@@ -1,0 +1,9 @@
+/Build/*
+*.sdf
+*.tlog
+*.pch
+*.obj
+*.pdb
+*.idb
+Debug/
+Release/
