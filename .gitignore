@@ -5,5 +5,7 @@
 *.obj
 *.pdb
 *.idb
+*.opensdf
+*.ipch
 Debug/
 Release/
