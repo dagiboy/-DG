@@ -141,6 +141,7 @@
     <ClInclude Include="Task1.1.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CommonFunc.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
