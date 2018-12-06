@@ -2,10 +2,6 @@
 
 #include "CommonFunc.hpp"
 
-#include <list>
-#include <vector>
-#include "Matrix.hpp"
-
 Matrix GetBitMatrix(const Matrix &matr, double b)
 {
 	int size = matr.GetSize();

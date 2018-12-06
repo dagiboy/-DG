@@ -217,20 +217,21 @@ TEST(MatrixTests, Test4)
 
 TEST(MatrixTests, Test5)
 {
-	std::string matrixStr = "{{0, 0, 1}, {0, 0, 0.5}, {1, 1, 2.5}}";
+	std::string matrixStr = "{{0, 0, 1, 1}, {0, 0, 0.5, 1}, {1, 1, 2.5, 1}, {1, 1, 1,1}}";
 
-	double arrForTest[3][3] =
+	double arrForTest[4][4] =
 	{
-		{ 0, 0, 1 },
-		{ 0, 0, 0.5 },
-		{ 1, 1, 2.5 }
+		{ 0, 0, 1 ,1},
+		{ 0, 0, 0.5, 1 },
+		{ 1, 1, 2.5 ,1},
+		{1, 1, 1, 1}
 	};
 
-	Matrix matrix(matrixStr, 3);
+	Matrix matrix(matrixStr, 4);
 
-	ASSERT_EQ(3, matrix.GetSize());
+	ASSERT_EQ(4, matrix.GetSize());
 
-	for (int i = 0; i < 3; ++i)
-		for (int j = 0; j < 3; ++j)
+	for (int i = 0; i < 4; ++i)
+		for (int j = 0; j < 4; ++j)
 			ASSERT_DOUBLE_EQ(arrForTest[i][j], matrix[i][j]);
 }

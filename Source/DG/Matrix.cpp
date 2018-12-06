@@ -58,21 +58,15 @@ Matrix::Matrix(std::string matrix, int size)
 
 	AllocateMatrix();
 
-	int i = 0;
-	int j = 0;
-
-	while (std::getline(ss, item, ' '))
+	for (int i = 0; i < _size; ++i)
 	{
-		if (j == 3)
+		for (int j = 0; j < _size; ++j)
 		{
-			++i;
-			j = 0;
-		}
+			ss >> item;
+			if (item.length() == 0)
+				throw std::runtime_error("Invalid string!");
 
-		if (!item.empty())
-		{
 			_matrix[i][j] = stod(item);
-			++j;
 		}
 	}
 }
