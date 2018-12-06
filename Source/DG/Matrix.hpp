@@ -2,28 +2,35 @@
 
 #include "DGApi.hpp"
 
-#include <string>
-
 class Matrix
 {
 public:
+	// —оздает нулевую матрицу размера size x size
 	DG_API Matrix(int size);
 
-	// matr - строка, представл€юща€ матрицу, элементы которой сто€т через любой пробельный символ.
-	DG_API Matrix(std::string matr, int size);
+	DG_API Matrix(double** matrix, int size);
+
+	// matrix - строка, представл€юща€ матрицу, элементы которой сто€т через любой пробельный символ.
+	// „исла типа double в строке должны записыватьс€ через точку, т.е 6.666, а не 6,666
+	DG_API Matrix(std::string matrix, int size);
 	DG_API Matrix(const Matrix& other);
 	DG_API ~Matrix();
 
-	int DG_API GetSize() const;
+	DG_API int GetSize() const;
 
-	Matrix DG_API friend operator +(Matrix lMatr, Matrix rRmatr);
-	Matrix DG_API friend operator *(Matrix lMatr, Matrix rRmatr);
-	Matrix DG_API friend operator *(Matrix lMatr, double num);
-	Matrix DG_API friend operator *(double num, Matrix rRmatr);	
-	Matrix DG_API operator = (const Matrix& other);
-	double * DG_API operator [](int index);
+	DG_API Matrix operator=(const Matrix& other);
+	DG_API double* operator[](int index) const;
 
+	DG_API Matrix operator+(const Matrix& right) const;
+	DG_API Matrix operator*(const Matrix& right) const;
+	DG_API Matrix operator*(double number) const;
+	DG_API Matrix friend operator*(double number, Matrix rightMatrix);
+	
 private:
-	double **_matr;
+	void AllocateMatrix();
+	void InitializeFrom(double** matrix, int size);
+	void ClearMatrix() const;
+
+	double **_matrix;
 	int _size;
 };
