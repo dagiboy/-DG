@@ -22,6 +22,7 @@
     <ProjectGuid>{C2CD1416-17B5-4E36-BF04-1042DABB2A1D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DGTests</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -144,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DG.Tests.cpp" />
+    <ClCompile Include="GetPossiblePermTests.cpp" />
     <ClCompile Include="MatrixTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
