@@ -121,6 +121,21 @@ Matrix Matrix::operator+(const Matrix& right) const
 	return sum;
 }
 
+Matrix Matrix::operator-(const Matrix& right) const
+{
+	// Генерация исключения при несоответствии размеров матриц
+	if (_size != right._size)
+		throw std::runtime_error("Invalid size");
+
+	Matrix sum(_size);
+
+	for (int i = 0; i < _size; ++i)
+		for (int j = 0; j < _size; ++j)
+			sum._matrix[i][j] = _matrix[i][j] - right._matrix[i][j];
+
+	return sum;
+}
+
 Matrix Matrix::operator*(const Matrix& right) const
 {
 	// Генерация исключения при несоответствии размеров матриц
@@ -184,4 +199,40 @@ void Matrix::ClearMatrix() const
 		delete[] _matrix[i];
 
 	delete[] _matrix;
+}
+
+std::string Matrix::OutMatrix() const
+{
+	std::string result = "";
+	std::string temp;
+	std::stringstream ss;
+
+	for (int i = 0; i < _size; ++i)
+	{
+		for (int j = 0; j < _size; ++j)
+		{
+			ss << _matrix[i][j];
+			ss >> temp;
+			ss.clear();
+			result = result + " " + temp;
+		}
+
+		result = result + "\n";
+	}
+
+	return result;
+}
+
+bool Matrix::Isnull() const
+{
+	for (int i = 0; i < _size; ++i)
+	{
+		for (int j = 0; j < _size; ++j)
+		{
+			if (_matrix[i][j] != 0)
+				return false;
+		}
+	}
+
+	return true;
 }

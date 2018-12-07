@@ -22,10 +22,14 @@ public:
 	DG_API double* operator[](int index) const;
 
 	DG_API Matrix operator+(const Matrix& right) const;
+	DG_API Matrix operator-(const Matrix& right) const;
 	DG_API Matrix operator*(const Matrix& right) const;
 	DG_API Matrix operator*(double number) const;
 	DG_API Matrix friend operator*(double number, Matrix rightMatrix);
 	
+	DG_API std::string OutMatrix() const;
+	DG_API bool Isnull() const;
+
 private:
 	void AllocateMatrix();
 	void InitializeFrom(double** matrix, int size);

@@ -2,6 +2,8 @@
 
 #include "CommonFunc.hpp"
 
+using namespace std;
+
 Matrix GetBitMatrix(const Matrix &matr, double b)
 {
 	int size = matr.GetSize();
@@ -37,9 +39,7 @@ double Minmax(const Matrix& matr)
 	return minmax;
 }
 
-using namespace std;
-
-bool GetAllPerm(const vector<vector<int>>& positionList, list<vector<int>>& possiblePerm, size_t recursionLevel = 0, vector<int> curentPerm = {})
+bool GetAllPerm(const vector<vector<int>>& positionList, vector<vector<int>>& possiblePerm, size_t recursionLevel = 0, vector<int> curentPerm = {})
 {
 	if (recursionLevel >= positionList.size())
 	{
@@ -64,7 +64,7 @@ bool GetAllPerm(const vector<vector<int>>& positionList, list<vector<int>>& poss
 
 // На вход функция получает матрицу, состоящую из 0 и 1.
 // Функция должна вернуть список перестановок, матрицы которых меньше или равна входной матрице.
-list<vector<int>> GetPossiblePerm(const Matrix& matr)
+vector<vector<int>> GetPossiblePerm(const Matrix& matr)
 {
 	//Для каждой строчки найдем номера позиций на которых стоян не нулевые элементы
 	vector<vector<int>> posList;
@@ -83,8 +83,51 @@ list<vector<int>> GetPossiblePerm(const Matrix& matr)
 		posList.push_back(vect);
 	}
 
-	list<vector<int>> possiblePerm;
+	vector<vector<int>> possiblePerm;
 	GetAllPerm(posList, possiblePerm);
 
 	return possiblePerm;
+}
+
+Matrix GetPermMatrix(const vector<int>& perm)
+{
+	int size = perm.size();
+	Matrix result(size);
+	for (int i = 0; i < size; ++i)
+	{
+		for (int j = 0; j < size; ++j)
+			result[i][j] = perm[i] == j ? 1 : 0;
+	}
+
+	return result;
+}
+
+vector<pair<double, vector<int>>> GetPermDecomposition(const Matrix& matrix)
+{
+	vector<pair<double, vector<int>>> result;
+	if (matrix.Isnull())
+		return result;
+
+	vector<vector<int>> perms;
+	double b = Minmax(matrix) + 1;
+
+	while (b != 0 && perms.size() == 0)
+	{
+		b = b - 1;
+		if (b == 0)
+			throw runtime_error("Can't decomp matrix");
+
+		perms = GetPossiblePerm(GetBitMatrix(matrix, b));
+	}
+
+	vector<int> perm = perms[0];
+	Matrix P = GetPermMatrix(perm);
+	Matrix C = matrix - b * P;
+	result.push_back(pair<double, vector<int>>(b, perm));
+	auto nextDecomp = GetPermDecomposition(C);
+	for (size_t i = 0; i < nextDecomp.size(); ++i)
+		result.push_back(nextDecomp[i]);
+
+	return result;
+
 }
