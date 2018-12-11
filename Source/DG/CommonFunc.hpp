@@ -5,8 +5,8 @@
 #include "Matrix.hpp"
 
 // На вход функция получает матрицу, состоящую из 0 и 1.
-// Функция должна вернуть список перестановок, матрицы которых меньше или равна входной матрице.
-DG_API std::vector<std::vector<int>> GetPossiblePerm(const Matrix& matr);
+// Функция возвращает перестановку, матрица которой меньше или равна входной матрице, или пустую перестановку если такоая матрица не существует.
+DG_API std::vector<int> GetPossiblePerm(const Matrix& matr);
 
 DG_API std::vector<std::pair<double, std::vector<int>>> GetPermDecomposition(const Matrix& matrix);
 
