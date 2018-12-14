@@ -9,3 +9,5 @@
 *.ipch
 Debug/
 Release/
+7za.exe
+Pack.cmd
