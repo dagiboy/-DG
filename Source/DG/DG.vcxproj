@@ -157,6 +157,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="FindVectorProduct.cpp" />
     <ClCompile Include="GetPossiblePerm.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -17,3 +17,5 @@ DG_API Matrix GetPermMatrix(const std::vector<int>& perm);
 
 // Возращает minmax матрицы.
 DG_API double Minmax(const Matrix& matr);
+
+DG_API std::vector<double> GetVectorProduct(std::vector<double> &vect, Matrix& lP, Matrix& rP);

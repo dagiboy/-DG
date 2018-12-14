@@ -49,5 +49,8 @@
     <ClCompile Include="GetPossiblePerm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FindVectorProduct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

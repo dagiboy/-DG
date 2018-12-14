@@ -12,30 +12,26 @@ vector<int> GetPermRecursive(const vector<vector<int>>& positionList, size_t rec
 {
 	//если уровень рекурсии вышел за пределы размера матрицы, то мы нашли нужную нам перестановку и возвращаем значение получившейся перестановки
 	if (recursionLevel >= positionList.size())
-	{
 		return curentPerm;
-	}
-	else
-	{
-		//на recursionLevel шаге рекурсии для строки с номером recursionLevel перебираем все возможные элементы матрицы равные 1
-		for (size_t i = 0; i < positionList[recursionLevel].size(); ++i)
-		{
-			//если элемент с таким номером еще не присутствует в  нашей перестановке то дбавим этот номер в нашу перестановку
-			if (find(curentPerm.begin(), curentPerm.end(), positionList[recursionLevel][i]) == curentPerm.end())
-			{
-				// дбавим номер элемента в нашу перестановку
-				curentPerm.push_back(positionList[recursionLevel][i]);
-				//и рекурсивно вызовем нашу функцию для вычисления перестановки
-				vector<int> perm = GetPermRecursive(positionList, recursionLevel + 1, curentPerm);
-				
-				//если перестановка вычислилась успешно, то возвращаем ее и выходим из рекурсии
-				//а иначе продолжаем для следующих элементов
-				if (perm.size() == positionList.size())
-					return perm;
 
-				// удалим номер элемента из перестановки
-				curentPerm.pop_back();
-			}
+	//на recursionLevel шаге рекурсии для строки с номером recursionLevel перебираем все возможные элементы матрицы равные 1
+	for (size_t i = 0; i < positionList[recursionLevel].size(); ++i)
+	{
+		//если элемент с таким номером еще не присутствует в  нашей перестановке то дбавим этот номер в нашу перестановку
+		if (find(curentPerm.begin(), curentPerm.end(), positionList[recursionLevel][i]) == curentPerm.end())
+		{
+			// дбавим номер элемента в нашу перестановку
+			curentPerm.push_back(positionList[recursionLevel][i]);
+			//и рекурсивно вызовем нашу функцию для вычисления перестановки
+			vector<int> perm = GetPermRecursive(positionList, recursionLevel + 1, curentPerm);
+				
+			//если перестановка вычислилась успешно, то возвращаем ее и выходим из рекурсии
+			//а иначе продолжаем для следующих элементов
+			if (perm.size() == positionList.size())
+				return perm;
+
+			// удалим номер элемента из перестановки
+			curentPerm.pop_back();
 		}
 	}
 
