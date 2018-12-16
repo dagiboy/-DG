@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// Находит матрицу B где B[i][j] = matr[i][j] >= b ? 1 : 0
 Matrix GetBitMatrix(const Matrix &matr, double b)
 {
 	int size = matr.GetSize();
@@ -17,6 +18,7 @@ Matrix GetBitMatrix(const Matrix &matr, double b)
 	return result;
 }
 
+// Находим минимакс матрицы
 double Minmax(const Matrix& matr)
 {
 	int size = matr.GetSize();
@@ -39,6 +41,7 @@ double Minmax(const Matrix& matr)
 	return minmax;
 }
 
+// Получаем перестановочную матрицу
 Matrix GetPermMatrix(const vector<int>& perm)
 {
 	int size = perm.size();
@@ -52,6 +55,7 @@ Matrix GetPermMatrix(const vector<int>& perm)
 	return result;
 }
 
+// Находит раложение матрицы на линейную сумму перестановочных матриц.
 vector<pair<double, vector<int>>> GetPermDecomposition(const Matrix& matrix)
 {
 	vector<pair<double, vector<int>>> result;

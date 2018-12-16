@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// К левому вектору прибавляет правый вектор
 void AddToVector(vector<double> &l, vector<double> &r)
 {
 	if (l.size() != r.size())
@@ -13,6 +14,7 @@ void AddToVector(vector<double> &l, vector<double> &r)
 		l[i] += r[i];
 }
 
+// Реализует перестанку п
 BYTE GetPi(int num)
 {
 	BYTE result = 0;
@@ -29,6 +31,7 @@ BYTE GetPi(int num)
 	return result;
 }
 
+// Получает произведение вектора слева на тензорное произведение 2х перестановочных матриц
 vector<double> GetVectorOnTensorProduct(vector<double>& vect, vector<int> lPerm, vector<int> rPerm)
 {
 	if (vect.size() != lPerm.size() * rPerm.size())
@@ -46,12 +49,14 @@ vector<double> GetVectorOnTensorProduct(vector<double>& vect, vector<int> lPerm,
 	return result;
 }
 
+// Производит умножение каждой координаты вектора на число
 void ProductVectorToNum(vector<double>& vect, double num)
 {
 	for (size_t i = 0; i < vect.size(); ++i)
 		vect[i] *= num;
 }
 
+// Вычислет вроизведение вектора слева на матрицу P=(lPxrP).П(п)
 vector<double> GetVectorProduct(vector<double> &vect, Matrix& lP, Matrix& rP)
 {
 	if ((int)vect.size() != lP.GetSize() * rP.GetSize())
@@ -62,6 +67,7 @@ vector<double> GetVectorProduct(vector<double> &vect, Matrix& lP, Matrix& rP)
 
 	vector<double> tmp(vect.size());
 
+	// Получаем разложение матрицы на линейную сумму перестановочных матриц.
 	auto lDecomp = GetPermDecomposition(lP);
 	auto rDecomp = GetPermDecomposition(rP);
 
@@ -69,14 +75,17 @@ vector<double> GetVectorProduct(vector<double> &vect, Matrix& lP, Matrix& rP)
 	{
 		for (size_t j = 0; j < rDecomp.size(); ++j)
 		{
+			// Находим каждый член линейного разложения умноженного на данный вектор
 			vector<double> product = GetVectorOnTensorProduct(vect, lDecomp[i].second, rDecomp[j].second);
 			ProductVectorToNum(product, lDecomp[i].first);
 			ProductVectorToNum(product, rDecomp[j].first);
 
+			// Суммируем получившийся вектор к результату.
 			AddToVector(tmp, product);
 		}
 	}
 
+	// Умножаем результат на матрицу П(п)
 	vector<double> result(vect.size());
 	for (size_t i = 0; i < result.size(); ++i)
 		result[GetPi(i)] = tmp[i];

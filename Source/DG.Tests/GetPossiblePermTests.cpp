@@ -80,6 +80,7 @@ TEST(GetPermDecompositionTest, Test2)
 	}
 }
 
+// Выводи первую строчку матрицы P возведенной в 4ую степень
 TEST(FindSecondStr, Test1)
 {
 	string lPstr = (string)
